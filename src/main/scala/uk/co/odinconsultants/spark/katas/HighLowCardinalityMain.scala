@@ -12,10 +12,10 @@ object HighLowCardinalityMain {
     def right          = left.mapPartitions { rows: Iterator[Long] =>
       rows.flatMap(j => Iterator.range(0, numRight).map(i => (i, j)))
     }
-    print(s"Number of partitions: left = ${numOfPartitionsIn(left)}, right = ${numOfPartitionsIn(right)}")
+    println(s"Number of partitions: left = ${numOfPartitionsIn(left)}, right = ${numOfPartitionsIn(right)}")
     val result         = left.join(right, $"id" === $"_2")
     val count          = result.count()
-    print(s"Number of partitions: result = ${numOfPartitionsIn(result)}")
+    println(s"Number of partitions: result = ${numOfPartitionsIn(result)}")
     println(s"count = $count")
   }
 
