@@ -3,6 +3,9 @@ import uk.co.odinconsultants.spark.katas.SparkForTesting.spark
 
 object BigDataSmallMemoryMain {
 
+  /**
+   * Run this with -Xmx512m to demonstrate that 1.4gb is indeed written to disk.
+   */
   def main(args: Array[String]): Unit = {
     import spark.implicits._
     val initialNumRows: Long = 10000000L
@@ -12,9 +15,9 @@ object BigDataSmallMemoryMain {
     df.mapPartitions { rows: Iterator[Long] =>
       rows.flatMap(_ => Iterator.range(0, multiplier))
     }.write.mode("overwrite").parquet(fileName)
-    val actual = spark.read.parquet(fileName)
-    val count = actual.count()
-    val expectedRows = multiplier * initialNumRows
+    val actual        = spark.read.parquet(fileName)
+    val count         = actual.count()
+    val expectedRows  = multiplier * initialNumRows
     println(s"Actual numer of rows = $count, expected = $expectedRows")
     assert(count == expectedRows)
   }
