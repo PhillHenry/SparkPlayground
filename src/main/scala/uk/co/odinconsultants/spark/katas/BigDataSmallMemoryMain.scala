@@ -12,6 +12,7 @@ object BigDataSmallMemoryMain {
   ├── part-00000-edbc76a6-6c03-4f79-9a6d-b650219d261e-c000.snappy.parquet
   ├── part-00001-edbc76a6-6c03-4f79-9a6d-b650219d261e-c000.snappy.parquet
   └── _SUCCESS
+   * each parquet file about 689mb
    */
   def main(args: Array[String]): Unit = {
     import spark.implicits._
