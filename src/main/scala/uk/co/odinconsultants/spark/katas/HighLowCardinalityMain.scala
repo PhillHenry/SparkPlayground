@@ -8,7 +8,7 @@ object HighLowCardinalityMain {
   import spark.implicits._
 
   def main(args: Array[String]): Unit = {
-    val numLeft: Long  = 100000L
+    val numLeft: Long  = 1000000L
     val numRight: Long = 1000L
     val nPartitions    = 256
     println(s"Creating data frame with $numLeft rows")
